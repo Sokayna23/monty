@@ -1,3 +1,6 @@
+#0x19. C - Stacks, Queues - LIFO, FIFO#
+
+
 *General*
 
 What do LIFO and FIFO mean
