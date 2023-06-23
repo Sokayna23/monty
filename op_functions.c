@@ -6,9 +6,9 @@
  * @line_number: number of lines
  * Return: nothing
  */
-void push(stack_t **stack, char *argument, unsigned int line_number)
+void push(stack_t **stack, unsigned int line_number)
 {
-	if (!is_digit(argument))
+	if (!(*(data.argument) >= '0' &&*(data.argument) <= '9'))
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);

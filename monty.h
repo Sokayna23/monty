@@ -1,11 +1,11 @@
 #ifndef MONTY_H
 #define MONTY_H
+#define _GNU_SOURCE
 #include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
 #include <stdio.h>
-extern int status;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -34,16 +34,20 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-
+typedef struct data
+{
+	char *argument;
+	int status;
+} data_t;
+extern data_t data;
 /*data_struct_manipulation functions*/
 void push(stack_t **stack, unsigned int line_count);
 void pall(stack_t **stack, unsigned int line_count);
-void (*get_opcode_func(char *str))(stack_t **stack, unsigned int line_number);
 size_t print_stack(const stack_t *stack);
 stack_t *add_node_to_end(stack_t **stack, const int n);
 stack_t *add_node_to_top(stack_t **stack, const int n);
-void free_stack(stack_t *stack);
+void free_stack(stack_t **stack);
 
-void exec_instru(char *instruction, stack_t **stack, unsigned int line_number);
+void exec_instru(stack_t **stack, char *instruction, unsigned int line_number);
 
 #endif

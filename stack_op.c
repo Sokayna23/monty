@@ -77,14 +77,14 @@ size_t print_stack(const stack_t *stack)
  * @stack: the pointer poniting to the first element inthe stack
  * Return: nothing
  */
-void free_stack(stack_t *stack)
+void free_stack(stack_t **stack)
 {
 	stack_t *tmp;
 
-	while (stack)
+	while (*stack)
 	{
-		tmp = stack->next;
-		free(stack);
-		stack = tmp;
+		tmp = (*stack)->next;
+		free(*stack);
+		*stack = tmp;
 	}
 }
