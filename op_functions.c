@@ -42,3 +42,14 @@ void pall(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 	print_stack(*stack);
 }
+/**
+ * nop - Does not do anything!
+ * @stak: nothing
+ * @line_number: nothing
+ * Return: nothing
+ */
+void nop(stack_t **stack, unsigned int line_number)
+{
+	(void)stack;
+	(void)line_number;
+}

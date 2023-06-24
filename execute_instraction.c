@@ -12,6 +12,7 @@ void (*get_opcode_func(char *instruction, unsigned int line_number))(stack_t **
 	instruction_t instructions[] = {
 		{"push", push},
 		{"pall", pall},
+		{"nop", nop},
 		{NULL, NULL}
 	};
 	num_instru = sizeof(instructions) / sizeof(instruction_t);

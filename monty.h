@@ -40,13 +40,18 @@ typedef struct monty_data
 	int status;
 } monty_data_t;
 extern monty_data_t data;
-/*data_struct_manipulation functions*/
+
+/*opcode functions*/
 void push(stack_t **stack, unsigned int line_count);
 void pall(stack_t **stack, unsigned int line_count);
+void nop(stack_t **stack, unsigned int line_number);
+
+/* linked list functions*/
 size_t print_stack(const stack_t *stack);
 stack_t *add_node_to_end(stack_t **stack, const int n);
 stack_t *add_node_to_top(stack_t **stack, const int n);
 void free_stack(stack_t **stack);
 
+/* opcode function selecter*/
 void (*get_opcode_func(char *instruction, unsigned int line_number))(stack_t **, unsigned int);
 #endif
