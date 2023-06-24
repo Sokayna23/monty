@@ -54,5 +54,5 @@ stack_t *add_node_to_top(stack_t **stack, const int n);
 void free_stack(stack_t **stack);
 
 /* opcode function selecter*/
-void (*get_opcode_func(char *instruction, unsigned int line_number))(stack_t **, unsigned int);
+void (*get_opcode_func(char *instruction))(stack_t **, unsigned int);
 #endif

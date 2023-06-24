@@ -7,9 +7,9 @@
  * @line_number: line number
  * Return: a pointer function
  */
-void (*get_opcode_func(char *instruction, unsigned int line_number))(
-		stack_t **, unsigned int)
+void (*get_opcode_func(char *instruction))(stack_t **, unsigned int)
 {
+	unsigned int line_number = 1;
 	int num_instru, i;
 	instruction_t instructions[] = {
 		{"push", push},
@@ -18,6 +18,7 @@ void (*get_opcode_func(char *instruction, unsigned int line_number))(
 		{"pint", pint},
 		{NULL, NULL}
 	};
+
 	num_instru = sizeof(instructions) / sizeof(instruction_t);
 	for (i = 0; i < num_instru; i++)
 	{
@@ -25,6 +26,7 @@ void (*get_opcode_func(char *instruction, unsigned int line_number))(
 		{
 			return (instructions[i].f);
 		}
+		line_number++;
 	}
 	fprintf(stderr, "L%d: unknown instruction  %s\n", line_number, instruction);
 	exit(EXIT_FAILURE);
