@@ -34,12 +34,12 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-typedef struct data
-{
-	char *argument;
+typedef struct monty_data
+{	char * input_value;
+	int is_stack;
 	int status;
-} data_t;
-extern data_t data;
+} monty_data_t;
+extern monty_data_t data;
 /*data_struct_manipulation functions*/
 void push(stack_t **stack, unsigned int line_count);
 void pall(stack_t **stack, unsigned int line_count);
@@ -48,6 +48,5 @@ stack_t *add_node_to_end(stack_t **stack, const int n);
 stack_t *add_node_to_top(stack_t **stack, const int n);
 void free_stack(stack_t **stack);
 
-void exec_instru(stack_t **stack, char *instruction, unsigned int line_number);
-
+void (*get_opcode_func(char *instruction, unsigned int line_number))(stack_t **, unsigned int);
 #endif

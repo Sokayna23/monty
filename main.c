@@ -1,5 +1,6 @@
 #include "monty.h"
-data_t data = {NULL, 0};
+
+monty_data_t data = {NULL, 0, 0};
 
 /**
  * main - Monty interpreter
@@ -11,7 +12,7 @@ int main(int argc, char **argv)
 {
 	FILE *file;
 	stack_t **stack = NULL;
-	char *buffer = NULL;
+	char *buffer = NULL, *instruction;
 	size_t buf_size = 0;
 	unsigned int line_number = 1;
 	
@@ -26,6 +27,7 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
+	data.is_stack = 1;
 	while (getline(&buffer, &buf_size, file) != -1)
 	{
 		if (*buffer == '\n')
@@ -33,18 +35,18 @@ int main(int argc, char **argv)
 			line_number += 1;
 			continue;
 		}
-		data.argument = strtok(buffer, " \t\n");
-		if (data.argument == NULL)
+		instruction = strtok(buffer, " \t\n");
+		if (instruction == NULL)
 		{
 			line_number += 1;
 			continue;
 		}
-		data.argument = strtok(NULL, " \t\n");
-		exec_instru(stack, data.argument, line_number);
+		data.input_value = instruction;
+		get_opcode_func(instruction, line_number)(stack, line_number);
 		line_number++;
 	}
 	free(buffer);
 	free_stack(stack);
 	fclose(file);
-	exit(0);
+	exit(data.status);
 }

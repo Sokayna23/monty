@@ -8,13 +8,27 @@
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-	if (!(*(data.argument) >= '0' &&*(data.argument) <= '9'))
+	int i;
+	char *value = data.input_value;
+
+	if (value == NULL || value[0] == '\0')
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
-		return;
 	}
-	add_node_to_top(stack, line_number);
+	for (i = 0; value[i]; i++)
+	{
+		if (!((value[i] >= '0' && value[i] <= '9')
+					|| (i == 0 && value[i] == '-')))
+		{
+			fprintf(stderr, "L%u: usage: push integer\n", line_number);
+			exit(EXIT_FAILURE);
+		}
+	}
+	if (data.is_stack == 1)
+		add_node_to_top(stack, atoi(value));
+	else
+		add_node_to_end(stack, atoi(value));
 }
 /**
  * pall - prints the elements of the stack
