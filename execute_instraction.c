@@ -1,11 +1,9 @@
 #include "monty.h"
 
 /**
- * get_opcode_func - gets the suitable opcode function
- * based on the given instruction
+ * get_opcode_func - gets the suitable opcode func based on a given instruction
  * @instruction: instruction to execute
- * @line_number: line number
- * Return: a pointer function
+ * Return: a pointer to afunction
  */
 void (*get_opcode_func(char *instruction))(stack_t **, unsigned int)
 {
