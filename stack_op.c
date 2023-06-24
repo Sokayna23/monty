@@ -10,7 +10,7 @@
 stack_t *add_node_to_end(stack_t **stack, const int n)
 {
 	stack_t *node, *tmp = *stack;
-	
+
 	node = malloc(sizeof(stack_t));
 	if (node == NULL)
 	{

@@ -11,11 +11,11 @@ monty_data_t data = {NULL, 0, 0};
 int main(int argc, char **argv)
 {
 	FILE *file;
-	stack_t **stack = NULL;
+	stack_t *stack = NULL;
 	char *buffer = NULL, *instruction;
 	size_t buf_size = 0;
 	unsigned int line_number = 1;
-	
+
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -28,6 +28,7 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	data.is_stack = 1;
+	data.input_value = NULL;
 	while (getline(&buffer, &buf_size, file) != -1)
 	{
 		if (*buffer == '\n')
@@ -41,12 +42,12 @@ int main(int argc, char **argv)
 			line_number += 1;
 			continue;
 		}
-		data.input_value = instruction;
-		get_opcode_func(instruction, line_number)(stack, line_number);
+		data.input_value = strtok(NULL, " \t\n");
+		get_opcode_func(instruction, line_number)(&stack, line_number);
 		line_number++;
 	}
 	free(buffer);
-	free_stack(stack);
+	free_stack(&stack);
 	fclose(file);
 	exit(data.status);
 }

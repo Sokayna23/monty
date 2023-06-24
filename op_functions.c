@@ -8,7 +8,7 @@
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-	int i;
+	int i, num;
 	char *value = data.input_value;
 
 	if (value == NULL || value[0] == '\0')
@@ -25,10 +25,11 @@ void push(stack_t **stack, unsigned int line_number)
 			exit(EXIT_FAILURE);
 		}
 	}
+	num = atoi(value);
 	if (data.is_stack == 1)
-		add_node_to_top(stack, atoi(value));
+		add_node_to_top(stack, num);
 	else
-		add_node_to_end(stack, atoi(value));
+		add_node_to_end(stack, num);
 }
 /**
  * pall - prints the elements of the stack
