@@ -15,6 +15,7 @@ void (*get_opcode_func(char *instruction))(stack_t **, unsigned int)
 		{"nop", nop},
 		{"pint", pint},
 		{"pop", pop},
+		{"swap", swap},
 		{NULL, NULL}
 	};
 
