@@ -8,8 +8,7 @@
  */
 void swap(stack_t **stack, unsigned int line_number)
 {
-	stack_t *top1 = NULL;
-	int top2 = 0;
+	int top1, top2;
 
 	if (*stack == NULL || stack == NULL || (*stack)->next == NULL)
 	{
@@ -17,8 +16,8 @@ void swap(stack_t **stack, unsigned int line_number)
 		data.status = EXIT_FAILURE;
 		return;
 	}
-	top1 = *stack;
-	top2 = top1->n;
-	top1->n = top1->next->n;
-	top1->next->n = top2;
+	top1 = (*stack)->n;
+	top2 = (*stack)->next->n;
+	(*stack)->n = top2;
+	(*stack)->next->n = top1;
 }
