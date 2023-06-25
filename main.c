@@ -26,18 +26,23 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	data.is_stack = 1;
 	data.input_value = NULL;
 	while (getline(&buffer, &buf_size, file) != -1)
 	{
-		data.line_number++;
 		if (*buffer == '\n')
+		{
+			data.line_number++;
 			continue;
+		}
 		instruction = strtok(buffer, " \t\n");
 		if (instruction == NULL || instruction[0] == '#')
+		{
+			data.line_number++;
 			continue;
+		}
 		data.input_value = strtok(NULL, " \t\n");
 		get_opcode_func(instruction)(&stack, data.line_number);
+		data.line_number++;
 	}
 	free(buffer);
 	free_stack(&stack);
