@@ -43,3 +43,25 @@ void add(stack_t **stack, unsigned int line_number)
 	pop(stack, line_number);
 	(*stack)->n = result;
 }
+/**
+ * sub - substracts the top two elements of the stack
+ * @stack: stack
+ * @line_number: line number
+ * Return: nothing.
+ */
+void sub(stack_t **stack, unsigned int line_number)
+{
+	int result, top1, top2;
+
+	if (!stack || !*stack || !((*stack)->next))
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		data.status = EXIT_FAILURE;
+		return;
+	}
+	top1 = (*stack)->n;
+	top2 = (*stack)->next->n;
+	result = top2 - top1;
+	pop(stack, line_number);
+	(*stack)->n = result;
+}

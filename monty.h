@@ -17,9 +17,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 /**
  * struct instruction_s - opcode and its function
@@ -31,11 +31,18 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+/**
+ * struct monty_data - data of the opcode
+ * @input_value: a string
+ * @is_stack: a flag that to say whether a stack (0 or queue 1)
+ * @status: status of exit
+ */
 typedef struct monty_data
-{	char * input_value;
+{
+	char *input_value;
 	int is_stack;
 	int status;
 } monty_data_t;
@@ -49,6 +56,7 @@ void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
+void sub(stack_t **stack, unsigned int line_number);
 
 /* linked list functions*/
 size_t print_stack(const stack_t *stack);
