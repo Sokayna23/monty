@@ -10,10 +10,9 @@ void swap(stack_t **stack, unsigned int line_number)
 {
 	int top1, top2;
 
-	data.line_number = line_number;
 	if (*stack == NULL || stack == NULL || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%u: can't swap, stack too short\n", data.line_number);
+		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
 		data.status = EXIT_FAILURE;
 		return;
 	}

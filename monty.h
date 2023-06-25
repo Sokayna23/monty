@@ -38,7 +38,6 @@ typedef struct monty_data
 {	char * input_value;
 	int is_stack;
 	int status;
-	unsigned int line_number;
 } monty_data_t;
 extern monty_data_t data;
 
