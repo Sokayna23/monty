@@ -1,6 +1,6 @@
 #include "monty.h"
 
-monty_data_t data = {NULL, 0, 0};
+monty_data_t data = {NULL, 0, 0, 1};
 
 /**
  * main - Monty interpreter
@@ -12,9 +12,8 @@ int main(int argc, char **argv)
 {
 	FILE *file;
 	stack_t *stack = NULL;
-	char *buffer = NULL, *instruction;
+	char *buffer = NULL, *instruction = NULL;
 	size_t buf_size = 0;
-	unsigned int line_number = 1;
 
 	if (argc != 2)
 	{
@@ -31,20 +30,14 @@ int main(int argc, char **argv)
 	data.input_value = NULL;
 	while (getline(&buffer, &buf_size, file) != -1)
 	{
+		data.line_number++;
 		if (*buffer == '\n')
-		{
-			line_number += 1;
 			continue;
-		}
 		instruction = strtok(buffer, " \t\n");
-		if (instruction == NULL)
-		{
-			line_number += 1;
+		if (instruction == NULL || instruction[0] == '#')
 			continue;
-		}
 		data.input_value = strtok(NULL, " \t\n");
-		get_opcode_func(instruction)(&stack, line_number);
-		line_number++;
+		get_opcode_func(instruction)(&stack, data.line_number);
 	}
 	free(buffer);
 	free_stack(&stack);

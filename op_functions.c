@@ -11,9 +11,10 @@ void push(stack_t **stack, unsigned int line_number)
 	int i, num;
 	char *value = data.input_value;
 
+	data.line_number = line_number;
 	if (value == NULL || value[0] == '\0')
 	{
-		fprintf(stderr, "L%u: usage: push integer\n", line_number);
+		fprintf(stderr, "L%u: usage: push integer\n", data.line_number);
 		exit(EXIT_FAILURE);
 	}
 	for (i = 0; value[i]; i++)
@@ -21,7 +22,7 @@ void push(stack_t **stack, unsigned int line_number)
 		if (!((value[i] >= '0' && value[i] <= '9')
 					|| (i == 0 && value[i] == '-')))
 		{
-			fprintf(stderr, "L%u: usage: push integer\n", line_number);
+			fprintf(stderr, "L%u: usage: push integer\n", data.line_number);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -61,9 +62,10 @@ void nop(stack_t **stack, unsigned int line_number)
  */
 void pint(stack_t **stack, unsigned int line_number)
 {
+	data.line_number = line_number;
 	if (*stack == NULL || stack == NULL)
 	{
-		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", data.line_number);
 		data.status = EXIT_FAILURE;
 		return;
 	}
@@ -79,9 +81,10 @@ void pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *top = NULL;
 
+	data.line_number = line_number;
 	if (stack == NULL || *stack == NULL)
 	{
-		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", data.line_number);
 		data.status = EXIT_FAILURE;
 		return;
 	}
