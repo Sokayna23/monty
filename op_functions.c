@@ -26,7 +26,7 @@ void push(stack_t **stack, unsigned int line_number)
 		}
 	}
 	num = atoi(value);
-	if (data.is_stack == 1)
+	if (data.is_stack == 0)
 		add_node_to_top(stack, num);
 	else
 		add_node_to_end(stack, num);

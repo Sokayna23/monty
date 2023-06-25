@@ -24,11 +24,9 @@ void (*get_opcode_func(char *instruction))(stack_t **, unsigned int)
 	{
 		if (strcmp(instruction, instructions[i].opcode) == 0)
 		{
-			line_number++;
 			return (instructions[i].f);
 		}
 	}
 	fprintf(stderr, "L%d: unknown instruction  %s\n", line_number, instruction);
-	data.status = EXIT_FAILURE;
-	exit(data.status);
+	exit(EXIT_FAILURE);
 }

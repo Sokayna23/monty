@@ -1,7 +1,6 @@
-push 11
-push 22222
-pall
+push 1
+push 2
 push 3
-pint
+pall
 swap
 pall
