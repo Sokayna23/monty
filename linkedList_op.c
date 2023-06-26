@@ -15,7 +15,8 @@ stack_t *add_node_to_end(stack_t **stack, const int n)
 	if (node == NULL)
 	{
 		free(node);
-		return (NULL);
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
 	}
 	node->n = n;
 	node->next = NULL;
@@ -44,7 +45,10 @@ stack_t *add_node_to_top(stack_t **stack, const int n)
 
 	node = malloc(sizeof(stack_t));
 	if (node == NULL)
-		return (NULL);
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 	node->n = n;
 	node->prev = NULL;
 	node->next = *stack;
