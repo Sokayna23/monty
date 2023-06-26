@@ -3,9 +3,12 @@
 /**
  * get_opcode_func - gets the suitable opcode func based on a given instruction
  * @instruction: instruction to execute
- * Return: a pointer to afunction
+ * @stack: stack
+ * @line_number: line number (for error message)
+ * Return: nothing.
  */
-void get_opcode_func(char *instruction, stack_t **stack, unsigned int line_number)
+void get_opcode_func(char *instruction, stack_t **stack,
+		unsigned int line_number)
 {
 	int num_instru, i;
 	instruction_t instructions[] = {
