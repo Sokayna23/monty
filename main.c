@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 			continue;
 		}
 		instruction = strtok(buffer, " \t\n");
-		if (instruction == NULL)
+		if (instruction == NULL || instruction[0] == '#')
 		{
 			line_number++;
 			continue;
