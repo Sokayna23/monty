@@ -5,10 +5,9 @@
  * @instruction: instruction to execute
  * Return: a pointer to afunction
  */
-void (*get_opcode_func(char *instruction))(stack_t **, unsigned int)
+void get_opcode_func(char *instruction, stack_t **stack, unsigned int line_number)
 {
 	int num_instru, i;
-	unsigned int line_number = 1;
 	instruction_t instructions[] = {
 		{"push", push},
 		{"pall", pall},
@@ -26,9 +25,10 @@ void (*get_opcode_func(char *instruction))(stack_t **, unsigned int)
 	{
 		if (strcmp(instruction, instructions[i].opcode) == 0)
 		{
-			return (instructions[i].f);
+			instructions[i].f(stack, line_number);
+			return;
 		}
 	}
-	fprintf(stderr, "L%d: unknown instruction  %s\n", line_number, instruction);
+	fprintf(stderr, "L%u: unknown instruction  %s\n", line_number, instruction);
 	exit(EXIT_FAILURE);
 }

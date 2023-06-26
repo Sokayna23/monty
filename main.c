@@ -42,7 +42,7 @@ int main(int argc, char **argv)
 			continue;
 		}
 		data.input_value = strtok(NULL, " \t\n");
-		get_opcode_func(instruction)(&stack, line_number);
+		get_opcode_func(instruction, &stack, line_number);
 		line_number++;
 	}
 	free(buffer);
